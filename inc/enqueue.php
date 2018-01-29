@@ -75,7 +75,7 @@ function crypto_load_scripts(){
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'crypto_tether',  'https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js');
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), true );
-
+wp_enqueue_script( 'loadpost',  get_template_directory_uri().'/assets/js/loadpost.js');
 	wp_enqueue_script( 'crypto_touchwipe', get_template_directory_uri() . '/assets/js/jquery.touchwipe.min.js' );
 	wp_enqueue_script( 'crypto_mag', get_template_directory_uri() . '/assets/js/jquery.magnific-popup.min.js' );
   wp_enqueue_script( 'crypto_custom', get_template_directory_uri() . '/assets/js/main.js');
