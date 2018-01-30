@@ -9,9 +9,10 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-			<header class="archive-header text-center">
-				<?php the_archive_title('<h1 class="page-title">', '</h1>'); ?>
-			</header>
+					<header class="page-header bg-page-header" style="background-image: url(http://localhost/crypto/wp-content/uploads/2018/01/e68f925e-a7aa-31ba-a84d-1296e68e1238.jpg);">
+						<?php the_archive_title('<h4 class="page-title">', '</h4>'); ?>
+					</header>
+
 
 			<?php if( is_paged() ): ?>
 
@@ -46,10 +47,10 @@ get_header(); ?>
 
 			</div><!-- .container -->
 
-			<div class="container text-center">
+			<div class="container text-sm-center">
 				<a class="btn-sunset-load sunset-load-more" data-page="<?php echo sunset_check_paged(1); ?>" data-archive="<?php echo sunset_grab_current_uri(); ?>" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
 					<span class="sunset-icon sunset-loading"></span>
-					<span class="text">Load More</span>
+					<span class="text btn">Load More</span>
 				</a>
 			</div><!-- .container -->
 

@@ -3,6 +3,6 @@
 
 <form id="save-custom-css-form" method="post" action="options.php" class="sunset-general-form">
 	<?php settings_fields( 'sunset-custom-css-options' ); ?>
-	<?php do_settings_sections( 'alecaddd_sunset_css' ); ?>
+	<?php do_settings_sections( 'alecaddd_crypto_css' ); ?>
 	<?php submit_button(); ?>
 </form>

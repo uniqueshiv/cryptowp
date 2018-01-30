@@ -12,7 +12,7 @@
 function crypto_add_admin_page() {
 
 	//Generate crypto Admin Page
-	add_menu_page( 'crypto Theme Options', 'crypto', 'manage_options', 'alecaddd_crypto', 'crypto_theme_create_page', get_template_directory_uri() . '/img/crypto-icon.png', 110 );
+	add_menu_page( 'crypto Theme Options', 'Cryptoscoop', 'manage_options', 'alecaddd_crypto', 'crypto_theme_create_page', get_template_directory_uri() . '/assets/img/bitcoin.webp', 110 );
 
 	//Generate crypto Admin Sub Pages
 	add_submenu_page( 'alecaddd_crypto', 'crypto Sidebar Options', 'Sidebar', 'manage_options', 'alecaddd_crypto', 'crypto_theme_create_page' );
@@ -43,7 +43,7 @@ function crypto_custom_settings() {
 	add_settings_field( 'sidebar-description', 'Description', 'crypto_sidebar_description', 'alecaddd_crypto', 'crypto-sidebar-options');
 	add_settings_field( 'sidebar-twitter', 'Twitter handler', 'crypto_sidebar_twitter', 'alecaddd_crypto', 'crypto-sidebar-options');
 	add_settings_field( 'sidebar-facebook', 'Facebook handler', 'crypto_sidebar_facebook', 'alecaddd_crypto', 'crypto-sidebar-options');
-	add_settings_field( 'sidebar-gplus', 'Google+ handler', 'crypto_sidebar_gplus', 'alecaddd_crypto', 'crypto-sidebar-options');
+	//add_settings_field( 'sidebar-gplus', 'Google+ handler', 'crypto_sidebar_gplus', 'alecaddd_crypto', 'crypto-sidebar-options');
 
 	//Theme Support Options
 	register_setting( 'crypto-theme-support', 'post_formats' );

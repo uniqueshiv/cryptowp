@@ -27,11 +27,7 @@ get_header(); ?>
 
 										while( have_posts() ): the_post();
 
-											/*
-											$class = 'reveal';
-											set_query_var( 'post-class', $class );
-											*/
-											get_template_part( 'template-parts/content', get_post_format() );
+										get_template_part( 'template-parts/content', get_post_format() );
 
 										endwhile;
 
@@ -41,10 +37,10 @@ get_header(); ?>
 
 								?>
 							</div>
-								<div class="container text-center">
+								<div class="container text-sm-center">
 									<a class="btn-sunset-load sunset-load-more" data-page="<?php echo sunset_check_paged(1); ?>" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
 										<span class="sunset-icon sunset-loading"></span>
-										<span class="text">Load More</span>
+										<span class="text btn">Load More</span>
 									</a>
 								</div><!-- .container -->
 

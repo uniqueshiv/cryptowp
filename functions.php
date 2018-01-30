@@ -11,3 +11,4 @@ require get_template_directory().'/inc/walker.php';
 require get_template_directory().'/inc/ajax.php';
 require get_template_directory().'/inc/shortcodes.php';
 require get_template_directory().'/inc/widgets.php';
+require get_template_directory().'/inc/theme-functions.php';

@@ -8,24 +8,30 @@
 */
 
 ?>
-<article  id="post-<?php the_ID(); ?>" <?php post_class( 'sunset-format-image post bg' ); ?>>
+<article  id="post-<?php the_ID(); ?>" data-post_id="<?php the_ID(); ?>" <?php post_class( 'sunset-format-image post bg' ); ?>>
 	<div class="post-media">
 		<a href="<?php the_permalink();?>">
 
-			<img class="retina" src="<?php echo sunset_get_attachment(); ?>"  height="452" alt="Post Image">
+			<img class="retina img img-responsive" src="<?php echo sunset_get_attachment(); ?>"  alt="Post Image">
 		</a>
 	</div>
 
 	<div class="post-header center-align">
 			<div class="article-left">
-			<a href=""><img src="<?php echo get_template_directory_uri();?>/assets/img/author.jpeg" class=" img img-circle" style="width:40px;"></a>
+				<?php
+			$user = wp_get_current_user();
+
+			if ( $user ) :
+			    ?>
+			    <img src="<?php echo esc_url( get_avatar_url( $user->ID ) ); ?>" class=" img author-image img-circle" />
+			<?php endif; ?>
 			</div>
 			<div class="article-right">
 				<div class="row">
-						<div class="col-sm-4 col-xs-6"><a href="#" class="author"><?php the_author();?></a>
-						<div class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>2 hours ago</div></div>
+						<div class="col-sm-4 col-xs-6"><?php echo the_author_posts_link();?>
+						<div class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>   <?php $posted_on = human_time_diff(get_the_time('U'), current_time('timestamp')); echo $posted_on." ago";?></div></div>
 						<div class="col-sm-8 col-xs-6 text-xs-right tags all-caps">
-							<a href="#" class="tag-btn">Mobile</a>
+									<?php echo crypto_posted_meta();?>
 						</div>
 				</div>
 
@@ -35,14 +41,7 @@
 
 	<div class="post-content">
 		<div class="article-left">
-			<ul class="post_shares">
-			<li><div class="count_like">1.9k</div><a href="#">
-			<img src="<?php echo get_template_directory_uri();?>/assets/img/favourite.png"></i></a>
-			</li>
-			<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-			<li><a href="#" class="fb_circle"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-			<li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-			</ul>
+			<?php $id=get_the_ID(); echo crypto_share_this($id);?>
 		</div>
 		<div class="article-right">
 			<h2 class="post-title">
@@ -65,7 +64,7 @@
 
 			<div class="col-sm-4 text-sm-right post-views">
 					<i class="fa fa-eye" aria-hidden="true"></i>
-					 <strong>798445</strong> Total views
+					 <strong><?php echo getPostViews(get_the_ID()); ?></strong> Total views
 
 			</div>
 			<div class="col-sm-4 text-sm-right post-sharing">

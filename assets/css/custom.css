@@ -3,6 +3,7 @@
     position: relative;
     top: 10px;
     line-height: 3;
+		padding-left: 14px;
 }
 .post_shares{
 	list-style-type: none;
@@ -20,22 +21,78 @@
 	display:inline;
 	padding:0px 15px;
 }
-.author_image {
-    width: 40px;
-    max-width: 40px;
+.author-image {
+    width: 55px;
+    max-width: 55px;
 }
-.tag-btn{
-	background-color: #5de85d6b;
-	color: #5c5ce2;
-	padding: 2px 10px;
-	font-size: 12px;
-	font-weight: 500;
-	border-radius: 15px;
+.bg {
+    margin-bottom: 40px;
+}
+.all-caps a:nth-child(odd){
+    background: #e0e0e0;
+		color:magnta;
+}
+
+.tag-btn {
+    background-color: #5de85d6b;
+    color: #5c5ce2;
+    padding: 5px 8px;
+    font-size: 8px;
+    font-weight: 500;
+    border-radius: 15px;
+    line-height: 20px;
+    word-break: keep-all;
+    white-space: pre;
+    letter-spacing: 0px;
+    font-family: 'GorditaMedium';
+}
+.btn-search {
+	background-color: #ffcc19;
+    padding: 19px;
+    font-size: 21px;
+    color: #fff;
+    border: 2px solid #FFF;
+    border-radius: 5px;
+		font-family:'GorditaMedium';
+}
+.dropdown-toggle::after {
+    border-right: .0 solid transparent;
+    border-left: .0 solid transparent;
+}
+.search_heading{
+	font-size: 22px;
+    margin: 16px 0px;
+		font-family:'GorditaMedium';
+    color: #5f6c77;
+}
+.widget_recent_entries ul li{
+	border-bottom: 1px solid #cccccc69;
+    padding: 10px 0px;
+    font-size: 17px;
+    font-family: 'GorditaMedium';
+}
+.search-input{
+	padding: 20px;
+    font-size: 21px;
+    color: #000;
+    border: 0px;
+    border-radius: 5px;
+}
+.widget .widget-title:before{
+	background: url(http://www.sciences.univ-nantes.fr/CEISAM/pix/common/book.png) left bottom no-repeat;
+padding-right: 27px;
+background-position: center;
+position: relative;
+right: 5px;
+}
 }
 .dropdown-toggle::after{
 	border:0px;
 }
-
+.search_panel{
+	background-color:#eaeef2;
+	padding:40px;
+}
 .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -63,6 +120,10 @@
 @media(min-width:1550px){
 	.container{
 		max-width:1520px;
+	}
+	.latest-posts-widget .retina{
+		width:130px;
+		height:80px;
 	}
 }
 @font-face {
@@ -105,18 +166,6 @@
 	font-style: normal;
 }
 
-
-@font-face {
-	font-family: 'GorditaRegular';
-	src: url('../fonts/GorditaMedium/GorditaRegular.eot');
-	src: local('☺'),
-	 url('../fonts/GorditaMedium/GorditaRegular.woff') format('woff'),
-	 url('../fonts/GorditaMedium/GorditaRegular.ttf') format('truetype'),
-	 url('../fonts/GorditaMedium/GorditaRegular.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
 .post .post-title>.title{
 	font-family: 'GorditaMedium';
 	font-size: 26px;
@@ -145,6 +194,9 @@
     margin: 0px;
     border-radius: 7%;
 }
+.viewmore_widget{
+	font-family: 'GorditaMedium'
+}
 .post .post-footer strong{
 	padding:0px 5px;
 }
@@ -152,6 +204,7 @@
 	.search_user_btn li{
 		padding:6px 2px;
 	}
+
 	.right-align1{
 		-webkit-box-pack: end;
     -ms-flex-pack: end;

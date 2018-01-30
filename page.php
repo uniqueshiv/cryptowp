@@ -6,10 +6,14 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<main id="main">
+		<!-- <header class="page-header">
+			<h1><span class="accent-color"><?php echo get_the_title();?></h1>
+		</header> -->
 
-			<div class="container">
+		<div class="container">
+			<article class="page bg margin">
+				<div class="page-content">
 
 				<?php
 
@@ -24,7 +28,8 @@ get_header(); ?>
 					endif;
 
 				?>
-
+					</div>
+				</article>
 			</div><!-- .container -->
 
 		</main>

@@ -29,6 +29,12 @@ if (@$background == 1) {
     add_theme_support('custom-background');
 }
 
+add_filter( 'the_author_posts_link', function( $link )
+{
+    return str_replace( 'rel="author"', 'rel="author" class="author"', $link );
+});
+
+
 add_theme_support('post-thumbnails');
 
 /* Activate Nav Menu Option */
@@ -53,10 +59,10 @@ function sunset_sidebar_init()
             'name' => esc_html__('Sunset Sidebar', 'sunsettheme'),
             'id' => 'sunset-sidebar',
             'description' => 'Dynamic Right Sidebar',
-            'before_widget' => '<section id="%1$s" class="sunset-widget %2$s">',
-            'after_widget' => '</section>',
-            'before_title' => '<h2 class="sunset-widget-title">',
-            'after_title' => '</h2>',
+            'before_widget' => '<aside id="%1$s" class="bg widget %2$s">',
+            'after_widget' => '</aside>',
+            'before_title' => '<h4 class="widget-title">',
+            'after_title' => '</h4>',
         )
     );
 }
@@ -68,12 +74,12 @@ add_action('widgets_init', 'sunset_sidebar_init');
     ========================
 */
 
-function sunset_posted_meta()
+function crypto_posted_meta()
 {
-    $posted_on = human_time_diff(get_the_time('U'), current_time('timestamp'));
+    //$posted_on = human_time_diff(get_the_time('U'), current_time('timestamp'));
 
     $categories = get_the_category();
-    $separator = ', ';
+    $separator = '  ';
     $output = '';
     $i = 1;
 
@@ -81,12 +87,12 @@ function sunset_posted_meta()
         foreach ($categories as $category):
             if ($i > 1): $output .= $separator;
     endif;
-    $output .= '<a href="'.esc_url(get_category_link($category->term_id)).'" alt="'.esc_attr('View all posts in%s', $category->name).'">'.esc_html($category->name).'</a>';
+    $output .= '<a href="'.esc_url(get_category_link($category->term_id)).'"  class="tag-btn" alt="'.esc_attr('View all posts in%s', $category->name).'">'.esc_html($category->name).'</a>';
     ++$i;
     endforeach;
     endif;
-
-    return '<span class="posted-on">Posted <a href="'.esc_url(get_permalink()).'">'.$posted_on.'</a> ago</span> / <span class="posted-in">'.$output.'</span>';
+    return $output;
+  //  return '<span class="posted-on">Posted <a href="'.esc_url(get_permalink()).'">'.$posted_on.'</a> ago</span> / <span class="posted-in">'.$output.'</span>';
 }
 
 function sunset_posted_footer($onlyComments = false)
@@ -199,14 +205,14 @@ function sunset_grab_current_uri()
         SINGLE POST CUSTOM FUNCTIONS
     ========================
 */
-function sunset_post_navigation()
+function crypto_post_navigation()
 {
     $nav = '<div class="row">';
 
-    $prev = get_previous_post_link('<div class="post-link-nav"><span class="sunset-icon sunset-chevron-left" aria-hidden="true"></span> %link</div>', '%title');
+    $prev = get_previous_post_link('<div class="post-link-nav"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> %link </div>', '%title');
     $nav .= '<div class="col-xs-12 col-sm-6">'.$prev.'</div>';
 
-    $next = get_next_post_link('<div class="post-link-nav">%link <span class="sunset-icon sunset-chevron-right" aria-hidden="true"></span></div>', '%title');
+    $next = get_next_post_link('<div class="post-link-nav">%link <i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>', '%title');
     $nav .= '<div class="col-xs-12 col-sm-6 text-right">'.$next.'</div>';
 
     $nav .= '</div>';
@@ -214,10 +220,10 @@ function sunset_post_navigation()
     return $nav;
 }
 
-function sunset_share_this($content)
+function crypto_share_this($postid)
 {
-    if (is_single()) {
-        $content .= '<div class="sunset-shareThis"><h4>Share This</h4>';
+
+        $content .= '';
 
         $title = get_the_title();
         $permalink = get_permalink();
@@ -228,24 +234,26 @@ function sunset_share_this($content)
         $facebook = 'https://www.facebook.com/sharer/sharer.php?u='.$permalink;
         $google = 'https://plus.google.com/share?url='.$permalink;
 
-        $content .= '<ul>';
-        $content .= '<li><a href="'.$twitter.'" target="_blank" rel="nofollow"><span class="sunset-icon sunset-twitter"></span></a></li>';
-        $content .= '<li><a href="'.$facebook.'" target="_blank" rel="nofollow"><span class="sunset-icon sunset-facebook"></span></a></li>';
-        $content .= '<li><a href="'.$google.'" target="_blank" rel="nofollow"><span class="sunset-icon sunset-googleplus"></span></a></li>';
-        $content .= '</ul></div><!-- .sunset-share -->';
+        $content .= '<ul class="post_shares">';
+
+          $content .= '<li id="likepost"><div class="count_like">'.get_post_meta($postid, "votes_count", true).'</div><img src="'.get_template_directory_uri().'/assets/img/favourite.png"></li>';
+        $content .= '<li><a href="'.$twitter.'" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';
+        $content .= '<li><a href="'.$facebook.'" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';
+        //$content .= '<li><a href="'.$google.'" target="_blank" rel="nofollow"><i class="fa fa-googleplus" aria-hidden="true"></i></a></li>';
+        $content .= '<li><i class="fa fa-bookmark-o" aria-hidden="true"></i></li>';
+
+        $content .= '</ul>';
 
         return $content;
-    } else {
-        return $content;
-    }
+
 }
-add_filter('the_content', 'sunset_share_this');
+//add_filter('the_content', 'sunset_share_this');
 
 function sunset_get_post_navigation()
 {
     if (get_comment_pages_count() > 1 && get_option('page_comments')):
 
-        require get_template_directory().'/inc/templates/sunset-comment-nav.php';
+        require get_template_directory().'/inc/templates/crypto-comment-nav.php';
 
     endif;
 }
@@ -268,3 +276,66 @@ function mobileDetectGlobal() {
 }
 
 add_action('after_setup_theme', 'mobileDetectGlobal');
+
+
+function get_all_tag(){
+  $tags = get_tags(array('get'=>'all'));
+  $output='<div class="tagcloud">';
+  if($tags) {
+  foreach ($tags as $tag):
+  $output .= '<a href="'. get_term_link($tag).'">'. $tag->name .'</a>';
+  endforeach;
+  } else {
+  _e('No tags created.', 'text-domain');
+  }
+  $output .= '</div>';
+  return $output;
+}
+
+function get_all_category(){
+  $categories =  get_categories();
+  //var_dump($categories);
+  $output= '<div class="tagcloud">';
+  foreach  ($categories as $category) {
+    //echo $category_id = get_cat_ID( $category);
+
+  $category_link = get_category_link( $category->cat_ID );
+    $output.= '<a href="'.$category_link.'">'. $category->cat_name .'</a>';
+  }
+  $output.= '</div>';
+  return $output;
+}
+function wpse_62509_current_month_selector( $link_html ) {
+    $current_month = date("F Y");
+    if ( preg_match('/'.$current_month.'/i', $link_html ) )
+        $link_html = preg_replace('/<li>/i', '', $link_html );
+    return $link_html;
+}
+add_filter( 'get_archives_link', 'wpse_62509_current_month_selector' );
+
+
+
+function getPostViews($postID){
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0";
+    }
+    return $count;
+}
+function setPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+// Remove issues with prefetching adding extra views
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);

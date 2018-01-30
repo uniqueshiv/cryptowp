@@ -10,7 +10,7 @@
 
 	$twitter_icon = esc_attr( get_option( 'twitter_handler' ) );
 	$facebook_icon = esc_attr( get_option( 'facebook_handler' ) );
-	$gplus_icon = esc_attr( get_option( 'gplus_handler' ) );
+	//$gplus_icon = esc_attr( get_option( 'gplus_handler' ) );
 
 ?>
 <div class="crypto-sidebar-preview">
@@ -24,9 +24,7 @@
 			<?php if( !empty( $twitter_icon ) ): ?>
 				<span class="crypto-icon-sidebar dashicons-before dashicons-twitter"></span>
 			<?php endif;
-			if( !empty( $gplus_icon ) ): ?>
-				<span class="crypto-icon-sidebar crypto-icon-sidebar--gplus dashicons-before dashicons-googleplus"></span>
-			<?php endif;
+
 			if( !empty( $facebook_icon ) ): ?>
 				<span class="crypto-icon-sidebar dashicons-before dashicons-facebook-alt"></span>
 			<?php endif; ?>
